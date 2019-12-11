@@ -7,14 +7,15 @@ I hope my approach helps you to solve this problem.
 
 So let's imagine you have some kind of social app. It has swipe-menu, feed, profile screen, and messages flows. Coordinator pattern is already used, so no navigation logic in screen modules (please note, when I’m saying ‘screen module’ I does not mean some kind of its architecture). Every flow has it owns coordinator.
 
-￼
+![spagetti-coordinators](https://github.com/migonin/AnyCoordinatable/blob/master/Images/example.png?raw=true)
+
 And since user can navigate from one flow to another by tapping on other user profile in feed, then by tapping  messaging button on user profile and so on in a loop, every coordinator should know about all others to instantiate it some way and run.
 
 ```
-	func userSelected(_ user: User) {
-		let coordinator = UserCoordinator(user, navigationController: self.navigationController)
-		coordinator.start()
-	}
+func userSelected(_ user: User) {
+	let coordinator = UserCoordinator(user, navigationController: self.navigationController)
+	coordinator.start()
+}
 ```
 
 Or not?
@@ -24,14 +25,14 @@ Or not?
 First step you can do - to instantiate coordinators with some fabric, enclose it all with protocols and inject concrete fabric implementation by some way.
 
 ```
-	let coordinatorFactory: CoorinatorFactoring
+let coordinatorFactory: CoorinatorFactoring
 
-	…
+…
 
-	func userSelected(_ user: User) {
-		let coordinator = factory.makeUserCoordinator(user, navigationController: self.navigationController)
-		coordinator.start()
-	}
+func userSelected(_ user: User) {
+	let coordinator = factory.makeUserCoordinator(user, navigationController: self.navigationController)
+	coordinator.start()
+}
 ```
 
 Much better, but not perfect. You should create protocol for each coordinator since it has different instantiating options and result parameters. Let’s make it more generic.
@@ -76,8 +77,12 @@ protocol CoordinatorFactoring {
 ### Modularization
 Since your coordinators shouldn't know something about each other but only about their input and output types, you can place it somewhere below and put separate flows to separate modules (or frameworks):
 
+![frameworks](https://github.com/migonin/AnyCoordinatable/blob/master/Images/frameworks.png?raw=true)
+
 ### Stubbing
 Now your coordinator logic is finely enclosed with protocol, so you can stub every coordinator you need with some simple blank UI, e.g. `UIAlertController`. It's usefull when other coordinator is not ready or when you building test application for particular flow and other coordinators implementation is not needed. You can also stub output action from stubbed coordinator.
+
+![frameworks](https://github.com/migonin/AnyCoordinatable/blob/master/Images/screenshot.png?raw=true)
 
 ### A/B testing
 Sometimes you need to vary user path in application based on some variable in remote config. So now you can have two (or more) different coordinators with same input and output types and easily change which you want to use.
