@@ -39,7 +39,7 @@ Much better, but not perfect. You should create protocol for each coordinator si
 
 ## Protocols with associated type
 
->>>If you are not familiar with PAT concept, I recommend you to start with [WWDC 2015 session 408](https://developer.apple.com/videos/play/wwdc2015/408/) , and then check these [speech by Alexis Gallagher](https://www.youtube.com/watch?v=XWoNjiSPqI8) and this [post from Russ Bishop](http://www.russbishop.net/swift-associated-types).
+>If you are not familiar with PAT concept, I recommend you to start with [WWDC 2015 session 408](https://developer.apple.com/videos/play/wwdc2015/408/) , and then check these [speech by Alexis Gallagher](https://www.youtube.com/watch?v=XWoNjiSPqI8) and this [post from Russ Bishop](http://www.russbishop.net/swift-associated-types).
 
 So let’s declare protocol `Coordinatable` like this:
 ```
@@ -82,7 +82,7 @@ Since your coordinators shouldn't know something about each other but only about
 ### Stubbing
 Now your coordinator logic is finely enclosed with protocol, so you can stub every coordinator you need with some simple blank UI, e.g. `UIAlertController`. It's usefull when other coordinator is not ready or when you building test application for particular flow and other coordinators implementation is not needed. You can also stub output action from stubbed coordinator.
 
-![frameworks](https://github.com/migonin/AnyCoordinatable/blob/master/Images/screenshot.png?raw=true)
+![frameworks](https://github.com/migonin/AnyCoordinatable/blob/master/Images/screenshot.png?raw=true | width=100)
 
 ### A/B testing
 Sometimes you need to vary user path in application based on some variable in remote config. So now you can have two (or more) different coordinators with same input and output types and easily change which you want to use.
