@@ -82,7 +82,7 @@ Since your coordinators shouldn't know something about each other but only about
 ### Stubbing
 Now your coordinator logic is finely enclosed with protocol, so you can stub every coordinator you need with some simple blank UI, e.g. `UIAlertController`. It's usefull when other coordinator is not ready or when you building test application for particular flow and other coordinators implementation is not needed. You can also stub output action from stubbed coordinator.
 
-![frameworks](https://github.com/migonin/AnyCoordinatable/blob/master/Images/screenshot.png?raw=true | width=100)
+<img src="https://github.com/migonin/AnyCoordinatable/blob/master/Images/screenshot.png?raw=true" width="400">
 
 ### A/B testing
 Sometimes you need to vary user path in application based on some variable in remote config. So now you can have two (or more) different coordinators with same input and output types and easily change which you want to use.
