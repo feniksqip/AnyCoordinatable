@@ -9,6 +9,10 @@ So let's imagine you have some kind of social app. It has swipe-menu, feed, prof
 
 ![spagetti-coordinators](https://github.com/migonin/AnyCoordinatable/blob/master/Images/example.png?raw=true)
 
+But what if you have 10 coordinators? 20? 40? Here you can see real coordinators routing graph from one of my project. Looks like spaggeti plate, didn't it?
+
+![spagetti-coordinators](https://github.com/migonin/AnyCoordinatable/blob/master/Images/complexgraph.png?raw=true)
+
 And since user can navigate from one flow to another by tapping on other user profile in feed, then by tapping  messaging button on user profile and so on in a loop, every coordinator should know about all others to instantiate it some way and run.
 
 ```
